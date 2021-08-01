@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Ticket>
+
+@{
+    Layout = "_Dashboard";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-info">Tickets</h2>
+        </div>
+
+    </div>
+
+    <br /> <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Ticket Name
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Project
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="10%">
+                        @obj.TicketName
+                    </td>
+                    <td width="10%">
+                        @obj.TicketCreated
+                    </td>
+                    <td width="10%">
+                    @obj.Project.Name
+                    </td>
+                    <td width="5%">
+                        <a asp-controller="Ticket" asp-route-Id="@obj.Ticket_Id" asp-action="Info" class="btn btn-link text-primary w-30">Info</a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There are no tickets.. </p>
+    }
+
+</div>

@@ -1,0 +1,64 @@
+﻿@model WebApplication20.ViewModel.AddDevVM
+
+@{ 
+    Layout = "_Dashboard";
+}
+
+<div class="container p-3 border">
+    <div class="row">
+        <div class="col-6 form-group">
+            <form method="post" action="AddDevelopers" class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Ticket.Ticket_Id" />
+                <input type="hidden" asp-for="UserTicket.Ticket_Id" />
+
+                <div class="col-4">
+                    <label asp-for="Ticket.TicketName"></label>
+                </div>
+                <div class="col-8">
+                    <input type="text" asp-for="Ticket.TicketName" class="form-control" disabled />
+                </div>
+                <div class="col-4 pt-3">
+                    <label asp-for="UserTicket.ApplicationUser.Email"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.UserTicket.UserId, Model.DevList, "--Select Author--",
+                        new { @class = "form-control" })
+                </div>
+                <div class="col-4 offset-4">
+                    <button type="submit" class="btn btn-primary form-control">Add Association</button>
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+
+            <form method="post" action="RemoveAuthors">
+                <input type="hidden" asp-for="@Model.Ticket.Ticket_Id" />
+                <div class="row text-right">
+                    <div class="col-12 text-right h4 text-primary">
+                        Users Associated to this Ticket:
+                    </div>
+                </div>
+                @foreach (var user in Model.UserTicketList)
+                {
+
+                    <div class="row pb-2">
+                        <div class="col-8 text-right" style="font-size:23px;">@user.ApplicationUser.Email</div>
+                        <div class="col-4">
+                            <button asp-action="RemoveAuthors" type="submit" class="btn btn-danger form-control" asp-route-userId="@user.UserId">Remove</button>
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@*@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}*@

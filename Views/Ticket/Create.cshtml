@@ -1,0 +1,158 @@
+﻿@model WebApplication20.Models.TicketVM
+
+
+@{
+
+    Layout = "_Dashboard";
+
+    var title = "Create Ticket";
+
+}
+
+<html>
+
+<body id="page-top">
+
+    
+            <!-- Main Content -->
+
+            <form method="post">
+                <div class="row p-3 border">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Ticket.Ticket_Id" />
+                    @if (Model.Ticket == null)
+                    {
+                        //edit
+                        title = "Create Ticket";
+                    }
+                    else
+                    {
+                        title = "Update Ticket";
+                    }
+
+                    <div class="col-12 border-bottom">
+                        <h2 class="text-primary">@title</h2>
+                    </div>
+                    <div class="col-8 pt-4">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Ticket.TicketName"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Ticket.TicketName" placeholder="Name..." class="form-control" />
+                                <span asp-validation-for="Ticket.TicketName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Ticket.TicketDescription"></label>
+                            </div>
+                            <div class="col-8">
+                                <textarea asp-for="Ticket.TicketDescription" placeholder="Write an Description..." rows="5" style="resize:none;" class="form-control"></textarea>
+                                <span asp-validation-for="Ticket.TicketDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Ticket.TicketCreated"></label>
+                            </div>
+                            <div class="col-4">
+                                <input asp-for="Ticket.TicketCreated" class="form-control" />
+                                <span asp-validation-for="Ticket.TicketCreated" class="text-danger"></span>
+                            </div>
+                        </div>
+
+             
+
+                        <div class="form-group row">
+                            <div class="col-4">
+                                
+                            </div>
+                            <div class="col-4">
+                                @Html.DropDownListFor(u => u.Ticket.Project_Id, Model.ProjectList, "Select Project",
+
+                                    new { @class = "form-control" })
+                                <span asp-validation-for="Ticket.Project_Id" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <!-- Status List-->
+
+                        <div class="form-group">
+                            <label asp-for="Ticket.TicketStatus" class="col-md-2"></label>
+                            <div class="col-md-4 mx-auto">
+                                <select asp-for="Ticket.TicketStatus" asp-items="@Model.StatusList" class="form-control">
+                                    <option disabeld selected>
+                                        Select Status
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Status List End-->
+                        <!-- TicketType List-->
+                        <div class="form-group">
+                            <label asp-for="Ticket.TicketType" class="col-md-2"></label>
+                            <div class="col-md-4 mx-auto">
+                                <select asp-for="Ticket.TicketType" asp-items="@Model.TicketTypeList" class="form-control">
+                                    <option disabeld selected>
+                                        Select Type
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- TicketType List End-->
+                        <!-- TicketPrio List-->
+                        <div class="form-group">
+                            <label asp-for="Ticket.TicketPriority" class="col-md-2"></label>
+                            <div class="col-md-4 mx-auto">
+                                <select asp-for="Ticket.TicketPriority" asp-items="@Model.TicketPrioList" class="form-control">
+                                    <option disabeld selected>
+                                        Select Priority
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- TicketPrio List End-->
+
+
+
+                        <div class="form-group row">
+                            <div class="col-4 offset-4">
+                                @if (Model.Ticket == null)
+                                {
+                                    <button type="submit" class="btn btn-success form-control">Create</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-success form-control">Update</button>
+                                }
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+              
+
+            </form>
+
+            <!-- End of Main Content -->
+          
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/TemplateInfo/vendor/jquery/jquery.min.js"></script>
+    <script src="/TemplateInfo/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/TemplateInfo/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/TemplateInfo/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

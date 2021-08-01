@@ -1,0 +1,26 @@
+﻿@model WebApplication20.Models.Ticket
+
+@{
+    ViewData["Title"] = "Details";
+
+    Layout = "_Dashboard";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ProceType</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TicketName)
+            @Html.DisplayNameFor(model => model.TicketDescription)
+        </dt>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-controller="Details" >Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

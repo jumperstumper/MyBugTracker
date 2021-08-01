@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Ticket>
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    Layout = "_Dashboard";
+}
+<html>
+
+
+
+<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+    <h6 class="m-0 font-weight-bold text-primary">Current Tickets</h6>
+
+</div>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Created
+                </th>
+                <th>
+                    Priority
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+
+                    <td width="10%">
+                        @obj.TicketName
+                    </td>
+                    <td width="10%">
+                        @obj.TicketCreated
+                    </td>
+                    <td width="10%">
+                        @obj.TicketPriority
+                    </td>
+
+
+
+                    <td width="5%">
+                        <a asp-controller="Ticket" asp-route-Id="@obj.Ticket_Id" asp-action="Info" class="btn btn-primary btn-lg text-white w-30">Info</a>
+                        <a asp-controller="Ticket" asp-route-Id="@obj.Ticket_Id" asp-action="Delete" onclick="return confirm('Are you sure you want to delete @obj.TicketName ?')" class="btn btn-danger btn-lg text-white w-30">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="text-secondary text-center p-2">There are no Tickets for this project <i class="fas fa-laugh-beam"></i></h2>
+    <h6 class="text-center"><a asp-controller="Ticket" asp-action="Create">Create a Ticket</a></h6>
+
+
+}
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- End of Main Content -->
+<!--</div>-->
+<!-- End of Content Wrapper -->
+<!-- Bootstrap core JavaScript-->
+<script src="~/TemplateInfo/vendor/jquery/jquery.min.js"></script>
+<script src="/TemplateInfo/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/TemplateInfo/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/TemplateInfo/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="~/TemplateInfo/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="~/TemplateInfo/js/demo/chart-area-demo.js"></script>
+<script src="~/TemplateInfo/js/demo/chart-pie-demo.js"></script>
+
+
+
+</html>

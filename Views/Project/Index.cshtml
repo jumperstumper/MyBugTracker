@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Project>
+
+@{
+    Layout = "_Dashboard";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-info">Projects</h2>
+        </div>
+       
+    </div>
+
+    <br /> <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Project Name
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width="10%">
+                            @obj.Name
+                        </td>
+                        <td width="10%">
+                            @obj.Created
+                        </td>
+                        <td width="5%">
+                            <a asp-controller="Project" asp-route-Id="@obj.Project_Id" asp-action="Details" class="btn btn-primary btn-lg text-white w-30">Tickets</a>
+                            <a asp-controller="Project" asp-route-Id="@obj.Project_Id" asp-action="Delete" onclick="return confirm ('Are you sure you want to delete @obj.Name ?')" class="btn btn-danger btn-lg text-white w-30">Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>There is no projects</p>
+    }
+
+</div>
