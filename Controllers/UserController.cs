@@ -70,18 +70,7 @@ namespace WebApplication20.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> UserProfile(string ticketSearch)
-        //{
-        //    ViewData["GetTicketDetails"] = ticketSearch;
-        //    var ticketquery = from n in _db.Tickets select n;
-
-        //    if(!string.IsNullOrEmpty(ticketSearch)) 
-        //    {
-        //        ticketquery = ticketquery.Where(n => n.TicketName.Contains(ticketSearch) || n.TicketPriority.Contains(ticketSearch));
-        //    }
-        //    return View(await ticketquery.AsNoTracking().ToListAsync());
-        //}
+    
 
        
            
