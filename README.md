@@ -1,6 +1,6 @@
 # Overview
 
-This is a beta version of my BugTracker project.<br/>
+This is a beta version of my hobby project a BugTracker.<br/>
 I will continue to develop this project and here is a list of things I would like to include in the future 
 <br/>
 * More Validation
